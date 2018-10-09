@@ -26,12 +26,29 @@ print('The jumble is ', jumble)
 
 # getting the player's guess
 guess = input('\nYour guess:')
+
+# Scores players who never utilised a hint
+if guess in WORDS:
+    print('You scored 100% without any hint')
+
 while guess != correct and guess !='':
     print('Sorry that is not it')
-    guess = input('Your guess: ')
+    ask = input('Do you want to see the hint for this word? Answer Y or N')
+    if ask == 'Y':
+        print('The available options are pyth..,eas..,diff...,ans... and xylo...')
+        guess = input('Your guess now: ')
+        # Score player who used hint
+        if guess in WORDS:
+            print('You scored nothing because you used hint')
 
-# Congratulating the player
-if guess == correct:
-    print('That is it. You guessed it right')
+    elif ask == 'N':
+        guess = input('\nYour guess: ')
+        if guess in WORDS:
+            print('You scored 100% without any hint')
 
-print('Thanks for playing')
+
+
+    else:
+        print('Either type in Y or N')
+
+
